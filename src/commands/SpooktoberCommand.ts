@@ -1,8 +1,9 @@
 import {ChatInputCommandInteraction, CacheType, EmbedBuilder} from 'discord.js';
 import Command from '@/commands/Command';
 import {getRandomGiphyGif} from '@/lib/giphy';
+import {getEnvString} from '@/util/env';
 
-const {GIPHY_API_KEY} = process.env;
+const GIPHY_API_KEY = getEnvString('GIPHY_API_KEY', '');
 
 export const SpooktoberCommand = new Command<
     ChatInputCommandInteraction<CacheType>
@@ -17,7 +18,7 @@ export const SpooktoberCommand = new Command<
         }
 
         const response = await getRandomGiphyGif({
-            api_key: GIPHY_API_KEY ?? '',
+            api_key: GIPHY_API_KEY,
             tag: 'halloween',
         });
 

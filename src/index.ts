@@ -4,7 +4,6 @@ import Logger from '@/telemetry/logger';
 import knex from 'knex';
 import knexfile from '../knexfile';
 import {Model} from 'objection';
-import {MessageCreateEvent} from './events/MessageCreateEvent';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
@@ -18,9 +17,10 @@ import {IAmDadEvent} from './events/IAmDadEvent';
 import {BangerEvent} from './events/BangerEvent';
 import {SpooktoberCommand} from './commands/SpooktoberCommand';
 import {JokeMemeCommand} from '@/commands/JokeMemeCommand';
+import {getEnvString} from '@/util/env';
 
-const DISCORD_APPLICATION_ID = process.env.DISCORD_APPLICATION_ID ?? '';
-const DISCORD_TOKEN = process.env.DISCORD_TOKEN ?? '';
+const DISCORD_APPLICATION_ID = getEnvString('DISCORD_APPLICATION_ID', '');
+const DISCORD_TOKEN = getEnvString('DISCORD_TOKEN', '');
 
 const logger = new Logger('wego-overseer:index');
 
